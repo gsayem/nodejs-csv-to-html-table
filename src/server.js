@@ -1,4 +1,5 @@
 const express = require('express');
+const open = require('open');
 const Papa = require('papaparse');
 const fs = require('fs');
 
@@ -41,7 +42,7 @@ app.get('/', async function (req, res) {
     //Finding the Tiers index to maintain the first column.
     var keysbyindex = Object.keys(sortedParsedData[0]);
     for (var i = 0; i < keysbyindex.length; i++) {
-        let temp = encodeURIComponent(keysbyindex[i].replace(/^\uFEFF/gm, "").replace(/^\u00BB\u00BF/gm, "")); //It's hase a byte code. So remove it.
+        let temp = encodeURIComponent(keysbyindex[i].replace(/^\uFEFF/gm, "").replace(/^\u00BB\u00BF/gm, "")); //It's has a byte code. So remove it.
         if (temp === "Tiers") {
             tiersIndex = i;
         }
@@ -58,3 +59,4 @@ app.get('/', async function (req, res) {
 
 app.listen(8080);
 console.log('Server is listening on port 8080');
+open('http://localhost:8080/');
