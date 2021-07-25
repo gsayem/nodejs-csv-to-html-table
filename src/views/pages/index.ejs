@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <% if(tiersIndex>-1){%>
+                            <th>
+                                <h4>
+                                    <%= header[tiersIndex]%>
+                                </h4>
+                            </th>
+                            <% };%>
+                                <% header.forEach(function(h,idx) { %>
+                                    <% if(idx!==tiersIndex){%>
+                                        <th>
+                                            <h4>
+                                                <%= h %>
+                                            </h4>
+                                        </th>
+                                        <% };%>
+                                            <% }); %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% sortedParsedData.forEach(function(data, idx) { %>
+                        <tr>
+
+                            <% if(tiersIndex>-1){%>
+                                <th>
+                                    <%= Object.values(data)[tiersIndex]%>
+                                </th>
+                                <% };%>
+                                    <% Object.values(data).forEach(function(v,idx) { %>
+                                        <% if(idx!==tiersIndex){%>
+                                            <td>
+                                                <%= v==='X' ?'\u2714' :v %>
+                                            </td>
+                                            <% };%>
+                                                <% }); %>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+
+</html>
